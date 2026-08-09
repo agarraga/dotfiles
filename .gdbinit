@@ -26,9 +26,8 @@ end
 
 define p_lldata
 	set var $n = $arg0
-	set var $t = $arg1
 	while $n
-		print *($t*)$n->data
+		print *($arg1 *)$n->data
 		set var $n = $n->next
 	end
 end
