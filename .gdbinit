@@ -2,6 +2,7 @@ set history save
 set verbose off
 set print pretty on
 set print array off
+set debuginfod enabled on
 
 tui new-layout small src 1 {-horizontal asm 2 regs 3} 2 cmd 2 status 1
 tui new-layout big -horizontal {src 2 status 1 asm 1}1 {regs 1 cmd 1}1
