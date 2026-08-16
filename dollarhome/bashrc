@@ -31,6 +31,5 @@
  alias tree="tree -C"
  alias du='du -h'
  
- PS1="[\[${CS_CYA}\]\u\[${CS_RST}\]@\[${CS_GRN}\]\h \[${CS_YEL}\]\w\[${CS_RST}\]]$ "
+ PS1="\[${CS_CYA}\]\u\[${CS_RST}\]@\[${CS_GRN}\]\h \[${CS_YEL}\]\w\[${CS_RST}\]$ "
  
- hash figlet cowsay lolcat 2>/dev/null && figlet 'Oh Hi!' | cowsay -n | lolcat
