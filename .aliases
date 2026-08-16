@@ -1,9 +1,0 @@
-# Aesthetic aliases
-alias asciiquarium="perl /usr/local/bin/asciiquarium"
-
-# Cmus stuff
-alias cmn="cmus-remote --next"
-alias cmr="cmus-remote --previous"
-alias cmp="cmus-remote --play"
-alias cmu="cmus-remote --pause"
-alias cmq="cmus-remote --query"
