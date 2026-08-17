@@ -1,43 +1,23 @@
 #!/bin/bash
 
-# Global Vars
-essentials="$(<packages-essential.txt)"
-fancy="$(<packages-fancy.txt)"
-nvimdeps="$(<packages-nvim-depends.txt)"
+DF_WD="$HOME/dotfiles"
+PACKAGES=$(<"$DF_WD/packages.list")
 
+# Global Vars
 main () {
     determine_package_manager
-    install_essential
-    install_fancy
-    install_neovim
+    install_from_list ${PACKAGES[@]}
 }
 
-# use this function for the individualstuff
-install_from_txt() {
+install_from_list() {
     a=("$@")
     for app in ${a[@]}; do
         if ${install} $app ; then
-            echo "Installed package succesfully: ($app)" >> install-script.log
+            echo "Package installed: $app"
         else
-            echo -e "\033[0;31m Could not install $app \033[0m"
-            sleep .6
-            echo "Error: package not installed: ($app)" >> install-script.log
+            echo "Error: Could not install package: $app" >&2
         fi
     done
-}
-
-install_fancy() {
-    install_from_txt ${fancy[@]}
-}
-
-install_essential() {
-    install_from_txt ${essentials[@]}
-}
-
-
-install_neovim() {
-    # TODO: install LATEST neovim
-    install_from_txt ${nvimdeps[@]}
 }
 
 determine_package_manager() {
@@ -55,17 +35,18 @@ determine_package_manager() {
         echo "Using Dandified YUM to install packages"
     elif [ "$(command -v pacman)" ]; then
         pacman -Syu
-        install="pacman -Syu --noconfirm"
+        install="pacman -S --noconfirm"
         echo "Using pacman to install packages"
     elif [ "$(command -v zypper)" ]; then
         zypper update
         install="zypper install -y"
         echo "Using zypper to install packages"
     else
-        echo "Error: Executable package manager not found, update the script or install one of the available managers: apt, yum, dnf, pacman, zypper"
+        echo "Error: Executable package manager not found." >&2
+	echo "Update the script or install one of the available managers:" >&2
+	echo "apt, yum, dnf, pacman, zypper" >&2
         exit $ERRCODE
     fi
-    sleep .6
 }
 
 main
