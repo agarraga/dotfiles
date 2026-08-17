@@ -1,7 +1,18 @@
 #!/bin/bash
 
-DF_WD="$HOME/dotfiles"
-PACKAGES=$(<"$DF_WD/packages.list")
+fflag=
+while getopts f opt; do
+	case $opt in
+		f) fflag=1 ;;
+	esac
+done
+shift $((OPTIND - 1))
+
+if [[ -n $fflag ]] ; then
+	PACKAGES=$(<"$1")
+else
+	PACKAGES=$@
+fi
 
 # Global Vars
 main () {
