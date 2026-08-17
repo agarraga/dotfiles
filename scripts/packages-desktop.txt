@@ -1,7 +1,0 @@
-oneko
-cmus
-i3
-gtk-chtheme
-lxappearance
-keyrings
-network-manager

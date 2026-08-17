@@ -1,8 +1,0 @@
-lolcat
-figlet
-cowsay
-sl
-bat
-btop
-zsh-autosuggestions
-zsh-syntax-highlighting
